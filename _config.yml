@@ -2,7 +2,7 @@ encoding: utf-8
 
 # SEO相关信息
 title: cqnswp Blog
-description: cqnswp的个人博客
+description: cqnswp 的个人博客
 keywords: cqnswp,Blog,Html,php
 author: cqnswp
 footerText: 'Copyright © 2020 渝ICP备19017069号'
@@ -16,11 +16,11 @@ exclude: ['CNAME', 'README.md', 'LICENSE', '_site', 'dist', 'Gemfile', 'Gemfile.
 
 # 域名配置
 # baseurl配置,如果网站部署在根目录下的其他目录中，请设置为 /目录名
-domainUrl: 'https://blog.csdn.net/qq_38626043'
+domainUrl: 'http://blog.cqnswp.ltd/'
 baseurl: ''
 
 # 吐个槽地址，会在chat页面中重定向到该地址
-tucaoUrl: 'https://blog.csdn.net/qq_38626043'
+#tucaoUrl: 'https://blog.csdn.net/qq_38626043'
 
 # 菜单
 menu:
@@ -56,6 +56,11 @@ extMath: false
 
 # 友情链接
 links:
-  - title: CSDN
+  - title: 个人CSDN博客
     url: https://blog.csdn.net/qq_38626043
-
+links:
+  - title: GuiXie
+    url: https://www.guixieblog.com/
+links:
+  - title: zjun's blog
+    url: https://www.zjun.info/
