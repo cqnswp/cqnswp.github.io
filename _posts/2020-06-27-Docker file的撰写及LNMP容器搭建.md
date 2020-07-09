@@ -1,3 +1,4 @@
+categories: [Docker+k8s]
 PS：关于dockerfile的官方文档：[https://docs.docker.com/engine/reference/builder/](https://docs.docker.com/engine/reference/builder/)
 ##  一. Dockerfile格式
 dockerfile其实就是一个文本
