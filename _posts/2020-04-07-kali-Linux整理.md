@@ -1,4 +1,9 @@
+
+---
+layout: mypost
+title: kali-linux整理
 categories: [渗透测试常用工具]
+---
 ## Kali Linux入门与介绍
 #### 一、kali的主要特色
  kali 官网 ：[https://www.kali.org/](https://www.kali.org/)

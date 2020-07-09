@@ -1,4 +1,9 @@
+
+---
+layout: mypost
+title: docker file撰写
 categories: [Docker+k8s]
+---
 PS：关于dockerfile的官方文档：[https://docs.docker.com/engine/reference/builder/](https://docs.docker.com/engine/reference/builder/)
 ##  一. Dockerfile格式
 dockerfile其实就是一个文本
@@ -67,7 +72,7 @@ RUN wget http://nginx.org/download/nginx-1.15.5.tar.gz && \
     make -j 4 && make install && \
     rm -rf /usr/local/nginx/html/* && \
     echo "ok" >> /usr/local/nginx/html/status.html && \
-    cd / && rm -rf nginx-1.12.2* && \
+    cd / && rm -rf nginx-1.* && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ENV PATH $PATH:/usr/local/nginx/sbin
