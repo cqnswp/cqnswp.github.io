@@ -10,18 +10,20 @@ dockerfile其实就是一个文本
 
 
 ## 二. Dockerfile指令
-| 指令 | 描述 |
-|--|--|
-| FROM | 构建新镜像是基于哪个镜像 |
-|MAINTAINER LABEL|镜像维护者姓名或邮箱地址|
-|RUN|构建镜像时运行的Shell命令|
-|COPY|拷贝文件或目录到镜像中|
-|ENV|设置环境变量|
-|USER|为RUN、CMD和ENTRYPOINT执行命令指定运行用户|
-|EXPOSE|声明容器运行的服务端口|
-|WORKDIR|为RUN、CMD、ENTRYPOINT、COPY和ADD设置工作目录|
-|ENTRYPOINT|运行容器时执行，如果有多个ENTRYPOINT指令，最后一个生效|
-|CMD|运行容器时执行，如果有多个CMD指令，最后一个生效
+
+
+
+指令| 描述
+-------- | -----
+ FROM| 构建新镜像是基于哪个镜像
+MAINTAINER LABEL| 镜像维护者姓名或邮箱地址
+ RUN  | 构建镜像时运行的Shell命令
+ ENV  | 设置环境变量
+ USER  | 为RUN、CMD和ENTRYPOINT执行命令指定运行用户
+ EXPOSE  | 声明容器运行的服务端口
+ WORKDIR  | 为RUN、CMD、ENTRYPOINT、COPY和ADD设置工作目录
+ ENTRYPOINT  | 运行容器时执行，如果有多个ENTRYPOINT指令，最后一个生效
+ CMD  | 运行容器时执行，如果有多个CMD指令，最后一个生效
 
 
 ## 三. Build镜像

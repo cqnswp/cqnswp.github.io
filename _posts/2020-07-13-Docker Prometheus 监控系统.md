@@ -149,10 +149,12 @@ scrape_configs:
 $ docker stats --no-stream 452f0102c634
 $ docker stats --no-stream 452f0102c634 |awk '{print $3}'
 ```
+
 主机| 业务
 -------- | -----
-主机一| 做nginx容器，和 cAdvisor 采集，做主机服务，和 exporter 的采集
+ 主机一| 做nginx容器，和 cAdvisor 采集，做主机服务，和 exporter 的采集
 主机二| 做pometheus监控（通过cAdvisor，exporter ），和Grafana可视化
+
 
 ### 4. 通过exporter搜集主机服务资源接口
 因为主机监控的特殊性，官方不建议用docker监控主机服务，所以采用二进制本地安装
