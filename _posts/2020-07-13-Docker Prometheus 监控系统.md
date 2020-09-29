@@ -66,7 +66,7 @@ Prometheus支持二进制，docker等部署方式
 
 配置文件需要自己写的
 ```bash
-$ docker container run -itd -p 9090:9090 -v /tmp/prometheus.yml:/etc/prometh eus/prometheus.yml prom/prometheus
+$ docker container run -itd -p 9090:9090 -v /tmp/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 ```
 
 
@@ -149,12 +149,10 @@ scrape_configs:
 $ docker stats --no-stream 452f0102c634
 $ docker stats --no-stream 452f0102c634 |awk '{print $3}'
 ```
-
 主机| 业务
 -------- | -----
- 主机一| 做nginx容器，和 cAdvisor 采集，做主机服务，和 exporter 的采集
+主机一| 做nginx容器，和 cAdvisor 采集，做主机服务，和 exporter 的采集
 主机二| 做pometheus监控（通过cAdvisor，exporter ），和Grafana可视化
-
 
 ### 4. 通过exporter搜集主机服务资源接口
 因为主机监控的特殊性，官方不建议用docker监控主机服务，所以采用二进制本地安装
@@ -253,9 +251,63 @@ $ docker container run -d --name=grafand -p 3000:3000 grafana/g rafana
 
 推荐id：
 nginx：193
-linux：9276
+linux：9276,8919
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200929092548519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
+
 ### 2. 效果
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200713031350834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020071318462288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200713191406313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200929092803124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
+
+
+### 3. grafana密码忘记问题
+修改数据库默认密码，user：admin pass：admin
+```sql
+$ update user set password = '59acf18b94d7eb0694c61e60ce44c110c7a683ac6a8f09580d626f90f4a242000746579358d77dd9e570e83fa24faa88a8a6', salt = 'F3FAxVm33R' where login = 'admin';
+```
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200929091701703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
+
+修修改后登录更改新密码
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200929091459385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
+
+### 4. 数据源扩展问题与grafana目录结构
+grafana自带的数据源不能满足部分需求，社区提供绝大多数数据源的安装接口
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200929115524305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
+
+```bash
+$ docker container exec -it dc5683c985b3 /bin/bash
+```
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200929115806106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
+自行导入重启即可
+
+```bash
+$ grafana-cli plugins install fastweb-openfalcon-datasource
+```
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200929115701501.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
+
+grafana 目录结构
+
+```bash
+安装目录
+/usr/share/grafana/
+grafana-cli 路径
+/usr/share/grafana/bin/grafana-cli
+全局配置文件
+/etc/grafana/grafana.ini
+默认配置文件
+/usr/share/grafana/conf/defaults.ini
+plugins 安装目录
+/var/lib/grafana/plugins/
+默认数据存储文件路径
+/var/lib/grafana/grafana.db
+日志文件存储路径
+/var/log/grafana/
+邮件默认发送模板路径
+/usr/share/grafana/public/emails/
+```
+
 
