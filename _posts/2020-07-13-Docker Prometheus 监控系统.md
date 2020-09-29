@@ -248,7 +248,7 @@ $ docker container run -d --name=grafand -p 3000:3000 grafana/g rafana
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200713024438293.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NjI2MDQz,size_16,color_FFFFFF,t_70#pic_center)
 通过自己画或者社区导入自己喜欢的仪表盘
 [https://grafana.com/grafana/dashboards](https://grafana.com/grafana/dashboards)
-
+ 
 推荐id：
 nginx：193
 linux：9276,8919
