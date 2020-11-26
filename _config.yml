@@ -1,10 +1,10 @@
 encoding: utf-8
 
 # SEO相关信息
-title: cqnswp Blog
-description: cqnswp 的个人博客
-keywords: cqnswp,Blog,Html,php
-author: cqnswp
+title: wp Blog
+description: wp 的个人博客
+keywords: wpnet,Blog,Html,php,cqnswp
+author: wp
 footerText: 'Copyright © 2020 渝ICP备19017069号'
 
 # 这些不要动
@@ -16,7 +16,7 @@ exclude: ['CNAME', 'README.md', 'LICENSE', '_site', 'dist', 'Gemfile', 'Gemfile.
 
 # 域名配置
 # baseurl配置,如果网站部署在根目录下的其他目录中，请设置为 /目录名
-domainUrl: 'http://blog.cqnswp.ltd/'
+domainUrl: 'http://blog.wpnet.info'
 baseurl: ''
 
 # 吐个槽地址，会在chat页面中重定向到该地址
