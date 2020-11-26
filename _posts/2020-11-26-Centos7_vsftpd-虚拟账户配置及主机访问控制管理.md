@@ -1,6 +1,6 @@
 ---
 layout: mypost
-title: Centos7_vsftpd-ssl/tls搭建维护及ftp加固
+title: Centos7_vsftpd-虚拟账户配置及主机访问控制管理
 categories: [网络与运维]
 ---
 
@@ -9,10 +9,10 @@ categories: [网络与运维]
  FTP虚拟账户管理分配
 ### 配置虚拟用户
 ```bash
-$ useradd   vsftpd -d    /home/vsftpd -s   /bin/false		#新建用户并禁止登录
-$ mkdir -p /home/vsftpd/ftp1								#新建用户目录及虚拟账户
-$ vim  /etc/vsftpd/login.conf  								#新建一个用户登录文件
-ftp1														#写入账户密码
+$ useradd   vsftpd -d    /home/vsftpd -s   /bin/false		//新建用户并禁止登录
+$ mkdir -p /home/vsftpd/ftp1						//新建用户目录及虚拟账户
+$ vim  /etc/vsftpd/login.conf  					//新建一个用户登录文件
+ftp1										//写入账户密码
 123456
 ```
 
@@ -33,8 +33,8 @@ account sufficient /lib64/security/pam_userdb.so db=/etc/vsftpd/login
 ### 2. 增加虚拟用户数据库配置文件
 
 ```bash
-$ mkdir /etc/vsftpd/userconf         #创建虚拟用户配置文件目录
-$ vim   /etc/vsftpd/userconf/ftp1   #这里的文件名必须与前面指定的虚拟用户名一致
+$ mkdir /etc/vsftpd/userconf         //创建虚拟用户配置文件目录
+$ vim   /etc/vsftpd/userconf/ftp1    //这里的文件名必须与前面指定的虚拟用户名一致
 local_root=/home/vsftpd/ftp1/
 write_enable=YES
 ```
@@ -42,15 +42,15 @@ write_enable=YES
 ### 3. 修改主配置文件
 
 ```bash
-$ vim   /etc/vsftpd/vsftpd.conf    		#存在的修改，不存在的增加
-anonymous_enable=NO          		    #禁止匿名用户登录
-chroot_local_user=YES           		#禁止用户访问除主目录以外的目录
-ascii_upload_enable=YES          		#设定支持ASCII模式的上传和下载功能   
-ascii_download_enable=YES     			#设定支持ASCII模式的上传和下载功能   
-guest_enable=YES                     	#启动虚拟用户
-guest_username=vsftpd             		#虚拟用户使用的系统用户名
-user_config_dir=/etc/vsftpd/userconf   	#虚拟用户使用的配置文件目录
-allow_writeable_chroot=YES      		#最新版的vsftpd为了安全必须用户主目录（也就是/home/vsftpd/ftp1）没有写权限，才能登录
+$ vim   /etc/vsftpd/vsftpd.conf    		//存在的修改，不存在的增加
+anonymous_enable=NO          		      //禁止匿名用户登录
+chroot_local_user=YES           		//禁止用户访问除主目录以外的目录
+ascii_upload_enable=YES          		//设定支持ASCII模式的上传和下载功能   
+ascii_download_enable=YES     		//设定支持ASCII模式的上传和下载功能   
+guest_enable=YES                     	//启动虚拟用户
+guest_username=vsftpd             		//虚拟用户使用的系统用户名
+user_config_dir=/etc/vsftpd/userconf   	//虚拟用户使用的配置文件目录
+allow_writeable_chroot=YES      		//最新版的vsftpd为了安全必须用户主目录（也就是/home/vsftpd/ftp1）没有写权限，才能登录
 ```
 
 
@@ -67,11 +67,11 @@ allow_writeable_chroot=YES      		#最新版的vsftpd为了安全必须用户主
 根据需求增加以下配置
 
 ```bash
-anon_world_readable_only=NO                # 浏览FTP目录和下载 
-anon_upload_enable=YES                     # 允许上传 
-anon_mkdir_write_enable=YES                # 建立和删除目录 
-anon_other_write_enable=YES                # 改名和删除文件 
-local_root=/ftpdir/                        # 指定虚拟用户在系统用户下面的路径，限制虚拟用户的家目录，虚拟用户登录后的主目录。 
+anon_world_readable_only=NO                // 浏览FTP目录和下载 
+anon_upload_enable=YES                     //允许上传 
+anon_mkdir_write_enable=YES                //建立和删除目录 
+anon_other_write_enable=YES                //改名和删除文件 
+local_root=/ftpdir/                        //指定虚拟用户在系统用户下面的路径，限制虚拟用户的家目录，虚拟用户登录后的主目录。 
 ```
 ## 二. 主机访问控制管理
 ### 1.修改hosts.allow，添加允许访问的IP
