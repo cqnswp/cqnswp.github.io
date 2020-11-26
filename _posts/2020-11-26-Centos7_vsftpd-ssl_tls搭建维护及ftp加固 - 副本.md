@@ -1,7 +1,7 @@
 ---
 layout: mypost
 title: Centos7_vsftpd-ssl/tls搭建维护及ftp加固
-categories: [网络与运维]
+categories: [信息安全]
 ---
 
 ## FPT服务配置系列：[Centos7_vsftpd-虚拟账户配置及管理](https://blog.csdn.net/qq_38626043/article/details/106665601)
