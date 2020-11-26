@@ -3,7 +3,7 @@ layout: mypost
 title: 关于我
 ---
 
-> 欢迎访问 ，小白一个，有问题欢迎私信探讨
+> 求知若渴 虚心若愚
 
 该博客托管于 GitHub Page   
 
